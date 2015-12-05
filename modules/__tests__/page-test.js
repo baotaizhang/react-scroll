@@ -12,9 +12,9 @@ import assert   from 'assert';
 
 
 describe('Page', () => {
-  
+
   let node = document.createElement('div');
-  
+
   document.body.appendChild(node)
 
   let scrollDuration = 10;
@@ -43,14 +43,14 @@ describe('Page', () => {
   afterEach(function () {
     unmountComponentAtNode(node)
   });
-    
+
   it('renders five elements of link/element', (done) => {
 
     render(component, node, () => {
 
         var allLinks = node.querySelectorAll('a');
         var allTargets = node.querySelectorAll('.element');
-        
+
         expect(allLinks.length).toEqual(5);
         expect(allTargets.length).toEqual(5);
 
@@ -65,7 +65,7 @@ describe('Page', () => {
     render(component, node, () => {
 
         var allTargets = node.querySelectorAll('.element');
-          
+
         [].forEach.call(allTargets, (element, i) => {
           expect(element.className).toEqual('element');
           expect(element.getAttribute('name')).toEqual('test' + ( i + 1 ));
@@ -78,7 +78,7 @@ describe('Page', () => {
   })
 
   it('is active when clicked', (done) => {
-    
+
     render(component, node, () => {
 
         var link = node.querySelectorAll('a')[4];
@@ -90,10 +90,10 @@ describe('Page', () => {
         Rtu.Simulate.click(link);
 
         /* Let it scroll, duration is based on param sent to Link */
-        
+
         setTimeout(() => {
 
-          expect(expectedScrollTo).toEqual(window.scrollY);
+          expect(expectedScrollTo).toEqual(window.scrollY - 2);
 
           expect(link.className).toEqual('active');
 

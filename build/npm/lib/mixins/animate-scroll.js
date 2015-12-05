@@ -71,7 +71,8 @@ var animateTopScroll = function(timestamp) {
 
   __currentPositionY = __startPositionY + Math.ceil(__deltaTop * __percent);
 
-  window.scrollTo(0, __currentPositionY);
+  // Correction for bug where the wrong link is registered as active
+  window.scrollTo(0, __currentPositionY + 2);
 
   if(__percent < 1) {
     requestAnimationFrame(animateTopScroll);
